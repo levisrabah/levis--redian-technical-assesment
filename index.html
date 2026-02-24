@@ -1,158 +1,47 @@
 <!doctype html>
-<!-- Simple single-page currency converter using open.er-api.com -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
     <title>Currency Converter</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="bg">
-      <div class="grain"></div>
-    </div>
-
     <main class="container">
       <header class="header">
-        <div class="brand">
-          <div class="logo" aria-hidden="true">↺</div>
-          <div>
-            <h1>Currency Converter</h1>
-            <p class="subtitle">
-              Live rates from
-              <a
-                href="https://open.er-api.com/v6/latest"
-                target="_blank"
-                rel="noreferrer"
-                >open.er-api.com</a
-              >
-            </p>
-          </div>
-        </div>
-        <div class="headerRight">
-          <button id="refreshBtn" class="btn btnSecondary" type="button">
-            Refresh rates
-          </button>
-        </div>
+        <h1>Currency Converter</h1>
+        <button id="refreshBtn" class="btn" type="button">Refresh</button>
       </header>
 
-      <section class="card" aria-label="Converter">
-        <div class="row">
-          <div class="field">
-            <label for="amount">Amount</label>
-            <div class="inputWrap">
-              <input
-                id="amount"
-                name="amount"
-                inputmode="decimal"
-                autocomplete="off"
-                placeholder="0.00"
-                value="100"
-              />
-              <button
-                id="clearBtn"
-                class="iconBtn"
-                type="button"
-                title="Clear amount"
-                aria-label="Clear amount"
-              >
-                ×
-              </button>
-            </div>
-            <p class="hint" id="amountHint">Tip: try “100”</p>
+      <section class="card">
+        <label>
+          Amount
+          <div class="inputWrap">
+            <input id="amount" inputmode="decimal" placeholder="0.00" value="100" />
+            <button id="clearBtn" class="iconBtn" type="button">×</button>
           </div>
+        </label>
 
-          <div class="field">
-            <label for="fromCurrency">From</label>
-            <div class="inputWrap">
-              <input
-                id="fromCurrency"
-                name="fromCurrency"
-                list="currencyList"
-                autocomplete="off"
-                spellcheck="false"
-                autocapitalize="characters"
-                placeholder="USD"
-                value="USD"
-              />
-              <span class="pill" id="fromName" aria-hidden="true"></span>
-            </div>
-            <div class="chips" aria-label="Popular from currencies">
-              <button class="chip" type="button" data-set-from="USD">
-                USD
-              </button>
-              <button class="chip" type="button" data-set-from="EUR">
-                EUR
-              </button>
-              <button class="chip" type="button" data-set-from="GBP">
-                GBP
-              </button>
-              <button class="chip" type="button" data-set-from="JPY">
-                JPY
-              </button>
-            </div>
-          </div>
+        <div class="row2">
+          <label>
+            From
+            <input id="fromCurrency" list="currencyList" value="USD" />
+          </label>
 
-          <div class="swapCol" aria-label="Swap currencies">
-            <button id="swapBtn" class="btn btnSwap" type="button" title="Swap">
-              ⇄
-            </button>
-          </div>
+          <button id="swapBtn" class="btn" type="button">⇄</button>
 
-          <div class="field">
-            <label for="toCurrency">To</label>
-            <div class="inputWrap">
-              <input
-                id="toCurrency"
-                name="toCurrency"
-                list="currencyList"
-                autocomplete="off"
-                spellcheck="false"
-                autocapitalize="characters"
-                placeholder="EUR"
-                value="EUR"
-              />
-              <span class="pill" id="toName" aria-hidden="true"></span>
-            </div>
-            <div class="chips" aria-label="Popular to currencies">
-              <button class="chip" type="button" data-set-to="EUR">EUR</button>
-              <button class="chip" type="button" data-set-to="GBP">GBP</button>
-              <button class="chip" type="button" data-set-to="CAD">CAD</button>
-              <button class="chip" type="button" data-set-to="INR">INR</button>
-            </div>
-          </div>
+          <label>
+            To
+            <input id="toCurrency" list="currencyList" value="EUR" />
+          </label>
         </div>
 
         <div class="result">
-          <div class="resultLeft">
-            <div class="kicker">Converted</div>
-            <div class="big" id="resultValue">—</div>
-            <div class="small" id="rateLine">—</div>
-          </div>
-          <div class="resultRight">
-            <div
-              class="status"
-              role="status"
-              aria-live="polite"
-              id="statusLine"
-            >
-              Loading rates…
-            </div>
-            <div class="meta" id="metaLine">—</div>
-          </div>
+          <div id="resultValue">—</div>
+          <div id="rateLine">—</div>
         </div>
 
-        <div class="footerRow">
-          <div class="fineprint">
-            Rates are for reference only. Always confirm the final amount with your bank or provider.
-          </div>
-          <div class="actions">
-            <button id="copyBtn" class="btn btnPrimary" type="button">
-              Copy result
-            </button>
-          </div>
-        </div>
+        <button id="copyBtn" class="btn btnPrimary" type="button">Copy result</button>
       </section>
 
       <datalist id="currencyList"></datalist>
